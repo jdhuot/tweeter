@@ -1,0 +1,62 @@
+
+ section.new-tweet {
+  padding:3em 0;
+  width:80%;
+  margin:0 auto;
+  background:#EBECED;
+}
+
+section.new-tweet h2 {
+  margin-top:0px;
+  text-align:center;
+}
+
+form {
+  display:flex;
+  flex-direction:column;
+}
+
+form label {
+  font-weight:700;
+}
+
+form textarea {
+  margin:20px 0;
+  border:none;
+  border-bottom:solid 3px;
+  background:rgba(255,255,255,.5);
+  border-radius:12px 12px 0 0;
+  transition: all 200ms ease;
+  padding:10px 1em;
+}
+
+form button {
+  background:#365198;
+  transition:all 200ms ease;
+  color:#ffffff;
+  border-radius:5px;
+  padding: 5px 30px;
+  font-size:.75em;
+  outline:none;
+  border: solid #365198 3px;
+}
+form button:hover {
+  background:#ffffff;
+  color:#365198;
+}
+
+form textarea:hover{
+  background:rgba(255,255,255,1);
+}
+
+form textarea:focus {
+  outline:none;
+  background:rgba(255,255,255,1);
+}
+
+form .submit-div {
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  font-family: 'Bungee',sans-serif;
+}
