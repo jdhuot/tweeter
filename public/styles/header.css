@@ -1,0 +1,17 @@
+header.profile-header {
+  height:400px;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  padding:2em 0;
+  background:#F8F9FA;
+  background-image: url("../images/geo.png");
+  background-attachment: fixed;
+}
+
+header img {
+  width:180px;
+  margin-top:1em;
+}

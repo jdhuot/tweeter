@@ -1,0 +1,22 @@
+/* Top Nav */
+
+nav {
+  background:#365198;
+  padding:1.5em 0;
+
+} 
+
+nav main {
+  display:flex;
+  justify-content:space-between;
+
+}
+
+nav a.app-title {
+  font-family:"Bungee";
+  color:#ffffff;
+}
+
+nav main a {
+  color:#ffffff;
+}
