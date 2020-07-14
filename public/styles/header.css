@@ -11,7 +11,7 @@ header.profile-header {
   background-attachment: fixed;
 }
 
-header img {
+header.profile-header img {
   width:180px;
   margin-top:1em;
 }

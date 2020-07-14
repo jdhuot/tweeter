@@ -3,7 +3,12 @@
 $(document).ready(function() {
 
   $('#tweet-text').keyup(function(event) {   
-    $('#compose-tweet .counter').text($(this).val().length);
+    $(this).siblings('div').find('.counter').text(140 - ($(this).val().length));
+    if (Number($('#compose-tweet .counter').text()) < 0) {
+      $(this).siblings('div').find('.counter').addClass('warning');
+    } else {
+      $(this).siblings('div').find('.counter').removeClass('warning');
+    }
   });
 
 });
