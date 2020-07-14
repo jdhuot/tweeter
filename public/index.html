@@ -17,9 +17,6 @@
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <!-- App JS -->
-    <script type="text/javascript" src="/scripts/client.js"></script>
-
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,700;1,300;1,700&display=swap" rel="stylesheet">
   </head>
@@ -29,14 +26,14 @@
     <nav>
       <main class="nav-wrapper">
         <a href="http://localhost:8080/" class="app-title a-no-hover"><span>tweeter</span></a>
-        <a href="/tweet"><strong>Post</strong> a Tweet!</a>
+        <a href="#compose-tweet"><strong>Post</strong> a Tweet!</a>
       </main>
     </nav>
 
     <!-- Profile Info -->
     <header class="profile-header">
       <div>
-        <img src="/images/profile-hex.png"> 
+        <img src="/images/profile-hex.png" id="el"> 
       </div>
       <div>
         <h2>Name Here</h2>
@@ -44,7 +41,7 @@
     </header>
 
     <!-- Page-specific (main) content here -->
-    <main class="container">
+    <main class="container" id="compose-tweet">
       <section class="new-tweet">
         <h2>Compose Tweet</h2>
         <form action="/tweets/" method="post">
@@ -62,5 +59,8 @@
         <p>Created 2020 | By: Jer</p>
       </main>
     </footer>
+    <!-- App JS -->
+    <script type="text/javascript" src="/scripts/client.js"></script>
+    <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
   </body>
 </html>
