@@ -10,6 +10,7 @@ article.tweet-box {
   border-radius:12px;
   background:#EBECED;
   transition:all 200ms ease;
+  margin-bottom:3em;
 }
 
 article.tweet-box:hover {
