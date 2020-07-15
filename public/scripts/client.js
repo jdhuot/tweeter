@@ -66,19 +66,27 @@ $(document).ready(function(){
 
   const renderTweets = function(tweets) {
     for (let tweet of tweets) {
-      $('section.tweets').append(createTweetElement(tweet));
+      $('section.tweets').prepend(createTweetElement(tweet));
     }
   };
-  // renderTweets(data);
+
 
   $('#new-tweet-form').submit(function(event) {
     event.preventDefault();
-    $.ajax({ url: '/tweets/', data: $(this).serialize() })
-    .then((res) => {
-      console.log(res);
-    })
-    .fail((err) => {
-    });
+    if ($(this).find('textarea').val().length < 1) {
+      alert('Field cannot be empty');
+    } else if ($(this).find('textarea').val().length > 140) {
+      alert('Too much text there...');
+    } else {
+      $.ajax({ url: '/tweets/', method: 'post', data: $(this).serialize() })
+      .then((res) => {
+        loadTweets();
+        $(this).find('textarea').val('');
+        // console.log(res);
+      })
+      .fail((err) => {
+      });
+    }
   });
   
   const loadTweets = function() {
