@@ -8,38 +8,13 @@
 // const tweetObj = json(tweetRef);
 
 
-// Fake data taken from initial-tweets.json
-// const data = [
-//   {
-//     "user": {
-//       "name": "Newton",
-//       "avatars": "https://i.imgur.com/73hZDYK.png"
-//       ,
-//       "handle": "@SirIsaac"
-//     },
-//     "content": {
-//       "text": "If I have seen further it is by standing on the shoulders of giants"
-//     },
-//     "created_at": 1461116232227
-//   },
-//   {
-//     "user": {
-//       "name": "Descartes",
-//       "avatars": "https://i.imgur.com/nlhLi3I.png",
-//       "handle": "@rd" },
-//     "content": {
-//       "text": "Je pense , donc je suis"
-//     },
-//     "created_at": 1461113959088
-//   }
-// ]
-
-
 
 $(document).ready(function(){
 
 
   const createTweetElement = function(tweetObj) {
+    let par = tweetObj.content.text;
+
     const $tweet = $(`
     <article class="tweet-box">
       <header>
@@ -49,7 +24,7 @@ $(document).ready(function(){
         </div>
         <a class="user-handle" href="#">${tweetObj.user.handle}</a>
       </header>
-      <p class="main-tweet">${tweetObj.content.text}</p>
+      <p class="main-tweet"></p>
       <footer>
       <p>${Math.floor((Date.now() - tweetObj.created_at) / (1000 * 3600 * 24))} days ago</p>
         <div>
@@ -60,9 +35,9 @@ $(document).ready(function(){
       </footer>
     </article>
     `);
+    $($tweet.find('.main-tweet')).text(par);
     return $tweet;
   };
-  
 
   const renderTweets = function(tweets) {
     for (let tweet of tweets) {
@@ -71,18 +46,26 @@ $(document).ready(function(){
   };
 
 
+  $('#new-tweet-form').find('textarea').focus((event) => {
+    // $(this).find('.error p').text('');
+    $('.error').slideUp();
+  });
+
   $('#new-tweet-form').submit(function(event) {
     event.preventDefault();
     if ($(this).find('textarea').val().length < 1) {
-      alert('Field cannot be empty');
+      $('.error').slideDown(400,function() {});
+      $('.error p').text('Field cannot be empty');
     } else if ($(this).find('textarea').val().length > 140) {
-      alert('Too much text there...');
+      $('.error').slideDown(400,function() {});
+      $('.error p').text('Exceeded max character count of 140');
     } else {
-      $.ajax({ url: '/tweets/', method: 'post', data: $(this).serialize() })
+      $.ajax({ url: '/tweets/', method: 'post', data: $(this).find('textarea').serialize() })
       .then((res) => {
+        console.log(res);
         loadTweets();
         $(this).find('textarea').val('');
-        // console.log(res);
+        $(this).find('.counter').text('140');
       })
       .fail((err) => {
       });
@@ -97,9 +80,15 @@ $(document).ready(function(){
   };
   loadTweets();
 
+
+  $("#compose-button").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#compose-tweet").offset().top
+    }, 2000);
+    setTimeout(function() {
+      $("#compose-tweet").find('textarea').focus();
+     }, 0);
+    
+  });
+
 });
-
-
-
-
-// console.log(createTweetElement(tweetData));

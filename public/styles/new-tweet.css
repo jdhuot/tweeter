@@ -63,3 +63,16 @@ form .submit-div {
 .warning {
   color:firebrick;
 }
+
+.error p {
+  color:firebrick;
+  font-weight:700;
+  font-size:20px;
+  margin-top:0px;
+}
+
+.error {
+  height:40px;
+  width:100%;
+  display:none;
+}

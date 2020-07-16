@@ -27,7 +27,7 @@
     <nav>
       <main class="nav-wrapper">
         <a href="http://localhost:8080/" class="app-title a-no-hover"><span>tweeter</span></a>
-        <a href="#compose-tweet"><strong>Post</strong> a Tweet!</a>
+        <a id="compose-button" href="#compose-tweet"><strong>Post</strong> a Tweet!</a>
       </main>
     </nav>
 
@@ -48,6 +48,9 @@
         <form id="new-tweet-form" action="/tweets/" method="post">
           <label for="tweet-text">What are you humming about?</label>
           <textarea name="text" id="tweet-text"></textarea>
+          <div class="error">
+            <p></p>
+          </div>
           <div class="submit-div">
             <button type="submit">Tweet</button>
             <output name="counter" class="counter" for="tweet-text">140</output>
@@ -55,24 +58,6 @@
         </form>
       </section>
       <section class="tweets">
-        <!-- <article class="tweet-box">
-          <header>
-            <div>
-              <img src="https://i.imgur.com/73hZDYK.png" alt="Avatar">
-              <h5>Newton</h5>
-            </div>
-            <a class="user-handle" href="#">@SirIsaac</a>
-          </header>
-          <p class="main-tweet">If I've seen further, it's by standing on the shoulders of giants</p>
-          <footer>
-            <p>10 days ago</p>
-            <div>
-              <a href="#"><img src="/images/flag.png" alt="flag"></a>
-              <a href="#"><img src="/images/retweet.png" alt="share"></a>
-              <a href="#"><img src="/images/heart.png" alt="love"></a>
-            </div>
-          </footer>
-        </article> -->
       </section>
     </main>
     <footer class="main-footer">
