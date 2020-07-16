@@ -84,11 +84,30 @@ $(document).ready(function(){
   $("#compose-button").click(function() {
     $('html, body').animate({
         scrollTop: $("#compose-tweet").offset().top
-    }, 2000);
+    }, 1000);
     setTimeout(function() {
       $("#compose-tweet").find('textarea').focus();
      }, 0);
-    
   });
+
+
+  $(".to-top-btn").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#top").offset().top
+    }, 1000);
+    setTimeout(function() {
+      $("#compose-tweet").find('textarea').focus();
+     }, 0);
+  });
+
+  $(document).scroll(function() {
+    var y = $(this).scrollTop();
+    if (y > 500) {
+      $('.to-top-btn').fadeIn();
+    } else {
+      $('.to-top-btn').fadeOut();
+    }
+  });
+
 
 });

@@ -1,0 +1,21 @@
+
+/* Larger Screens */
+
+@media (min-width:1024px) {
+  .profile-header {
+    max-width:30%;
+    min-height:350px;
+    margin:3em 0 0 3em;
+    border-radius:20px;
+    display:flex;
+    flex-direction:column;
+    float:left;
+  }
+  #compose-tweet {
+    max-width:60%;
+    float:right;
+  }
+  .main-footer {
+    clear:both;
+  }
+}
