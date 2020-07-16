@@ -4,14 +4,10 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// const tweetRef = require('../../server/data-files/initial-tweets.json');
-// const tweetObj = json(tweetRef);
+// Main jquery ready function
+$(document).ready(function() {
 
-
-
-$(document).ready(function(){
-
-
+  // Creates a new tweet element from the tweet object
   const createTweetElement = function(tweetObj) {
     let par = tweetObj.content.text;
 
@@ -35,22 +31,24 @@ $(document).ready(function(){
       </footer>
     </article>
     `);
-    $($tweet.find('.main-tweet')).text(par);
+    $($tweet.find('.main-tweet')).text(par); // Inserts text element which disallows code to be rendered in the browser for SAFETY
     return $tweet;
   };
 
+  // Loops through array of tween objects and creates html elements from the tweet data
   const renderTweets = function(tweets) {
     for (let tweet of tweets) {
       $('section.tweets').prepend(createTweetElement(tweet));
     }
   };
 
-
+  // When user clicks on the textarea after error, clear the error
   $('#new-tweet-form').find('textarea').focus((event) => {
-    // $(this).find('.error p').text('');
     $('.error').slideUp();
   });
 
+  // Listener for Submit on the new tweet form. 
+  // Then validates text and posts new tweet through ajax to database and reloads tweets on the page.
   $('#new-tweet-form').submit(function(event) {
     event.preventDefault();
     if ($(this).find('textarea').val().length < 1) {
@@ -61,53 +59,55 @@ $(document).ready(function(){
       $('.error p').text('Exceeded max character count of 140');
     } else {
       $.ajax({ url: '/tweets/', method: 'post', data: $(this).find('textarea').serialize() })
-      .then((res) => {
-        console.log(res);
-        loadTweets();
-        $(this).find('textarea').val('');
-        $(this).find('.counter').text('140');
-      })
-      .fail((err) => {
-      });
+        .then((res) => {
+          console.log(res);
+          loadTweets();
+          $(this).find('textarea').val('');
+          $(this).find('.counter').text('140');
+        })
+        .fail((err) => {
+          console.log(err);
+        });
     }
   });
   
+  // Loads tweets on the page initially
   const loadTweets = function() {
     $.ajax('/tweets/', { method: 'GET' })
-    .then((res) => {
-      renderTweets(res);
-    })
+      .then((res) => {
+        renderTweets(res);
+      });
   };
   loadTweets();
 
-
+  // Handler to smooth scroll and auto focus on new tweet form when user clicks on New Tweet in Nav
   $("#compose-button").click(function() {
     $('html, body').animate({
-        scrollTop: $("#compose-tweet").offset().top
+      scrollTop: $("#compose-tweet").offset().top
     }, 1000);
     setTimeout(function() {
       $("#compose-tweet").find('textarea').focus();
-     }, 0);
+    }, 0);
   });
 
-
+  // Handler to smooth scroll and auto focus on new tweet form when user clicks on footer back to top button
   $(".to-top-btn").click(function() {
     $('html, body').animate({
-        scrollTop: $("#top").offset().top
+      scrollTop: $("#top").offset().top
     }, 1000);
     setTimeout(function() {
       $("#compose-tweet").find('textarea').focus();
-     }, 0);
+    }, 0);
   });
 
+  // Handler to hide and show back to top button in footer when user scrolls 500px off the top
   $(document).scroll(function() {
-    var y = $(this).scrollTop();
-    if (y > 500) {
+    let top = $(this).scrollTop();
+    if (top > 500) {
       $('.to-top-btn').fadeIn();
     } else {
       $('.to-top-btn').fadeOut();
     }
   });
-
 
 });

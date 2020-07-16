@@ -1,3 +1,5 @@
+
+/* Profile Header */
 header.profile-header {
   height:400px;
   width:100%;
@@ -9,7 +11,6 @@ header.profile-header {
   background:#F8F9FA;
   background-image: url("../images/geo.png");
   background-attachment: fixed;
-
 }
 
 header.profile-header img {
